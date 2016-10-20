@@ -10,8 +10,8 @@ namespace Integracao_Google_API_DOTNET.Util
     public class GoogleApi
     {
 
-        public const string clientId = "992304351793-kq028c4l13lg6tvhvt640vn0ti3t5dm6.apps.googleusercontent.com";
-        public const string clientSecret = "yXFOkEx7xzsr3h6zarExXH0Z";
+        public const string clientId = "";
+        public const string clientSecret = "";
         public const string aplicationName = "Teste API";
         public static string[] scopes = { "openid", "email", DriveService.Scope.DriveReadonly };
 
