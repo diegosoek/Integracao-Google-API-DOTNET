@@ -104,3 +104,9 @@ D:\Desenv\tfs-soek\Projetos e Inventos da Paclabs\Integracao Google API DOTNET\I
 D:\Desenv\tfs-soek\Projetos e Inventos da Paclabs\Integracao Google API DOTNET\Integracao Google API DOTNET\bin\Google.Apis.PlatformServices.xml
 D:\Desenv\tfs-soek\Projetos e Inventos da Paclabs\Integracao Google API DOTNET\Integracao Google API DOTNET\bin\log4net.xml
 D:\Desenv\tfs-soek\Projetos e Inventos da Paclabs\Integracao Google API DOTNET\Integracao Google API DOTNET\bin\Zlib.Portable.xml
+D:\Desenv\tfs-soek\Projetos e Inventos da Paclabs\Integracao Google API DOTNET\Integracao Google API DOTNET\bin\Google.Apis.Calendar.v3.dll
+D:\Desenv\tfs-soek\Projetos e Inventos da Paclabs\Integracao Google API DOTNET\Integracao Google API DOTNET\bin\Google.Apis.Classroom.v1.dll
+D:\Desenv\tfs-soek\Projetos e Inventos da Paclabs\Integracao Google API DOTNET\Integracao Google API DOTNET\bin\Google.Apis.Calendar.v3.pdb
+D:\Desenv\tfs-soek\Projetos e Inventos da Paclabs\Integracao Google API DOTNET\Integracao Google API DOTNET\bin\Google.Apis.Calendar.v3.xml
+D:\Desenv\tfs-soek\Projetos e Inventos da Paclabs\Integracao Google API DOTNET\Integracao Google API DOTNET\bin\Google.Apis.Classroom.v1.pdb
+D:\Desenv\tfs-soek\Projetos e Inventos da Paclabs\Integracao Google API DOTNET\Integracao Google API DOTNET\bin\Google.Apis.Classroom.v1.xml

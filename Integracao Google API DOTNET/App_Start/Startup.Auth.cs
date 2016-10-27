@@ -102,8 +102,11 @@ namespace Integracao_Google_API_DOTNET
                     }
                 }
             };
-            googleCreds.Scope.Add("openid");
-            googleCreds.Scope.Add("email");
+
+            foreach(var scope in GoogleApi.scopes)
+            {
+                googleCreds.Scope.Add(scope);
+            }
 
             app.UseGoogleAuthentication(googleCreds);
         }
