@@ -1,8 +1,16 @@
-﻿using Integracao_Google_API_DOTNET.Models;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Classroom.v1;
+using Google.Apis.Services;
+using Integracao_Google_API_DOTNET.DTO;
+using Integracao_Google_API_DOTNET.Models;
+using Integracao_Google_API_DOTNET.Util;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -77,6 +85,41 @@ namespace Integracao_Google_API_DOTNET.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    try
+                    {
+                        PersonalServiceAccountCred cr;
+                        using (StreamReader sr = new StreamReader(Server.MapPath("~/Content/service_account.json")))
+                        {
+                            cr = JsonConvert.DeserializeObject<PersonalServiceAccountCred>(sr.ReadToEnd());
+                        }
+
+                        var scopes = new List<string>();
+
+                        foreach (var scope in GoogleApi.scopes)
+                        {
+                            scopes.Add(scope);
+                        }
+
+                        // Create an explicit ServiceAccountCredential credential
+                        var xCred = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(cr.clientEmail)
+                        {
+                            Scopes = scopes,
+                            User = "diego@gedu.demo.ilpsnanuvem.com.br"
+                        }.FromPrivateKey(cr.privateKey));
+
+                        //Chamada Google Drive API
+                        var service = new ClassroomService(new BaseClientService.Initializer()
+                        {
+                            HttpClientInitializer = xCred,
+                        });
+
+                        IList<Google.Apis.Classroom.v1.Data.Course> courses = service.Courses.List().Execute().Courses;
+
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

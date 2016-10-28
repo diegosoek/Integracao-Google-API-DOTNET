@@ -63,9 +63,14 @@ namespace Integracao_Google_API_DOTNET.Controllers
                         Title = "Word of the Day",
                         Type = "application/x-google-gadgets+xml",
                         IconLink = "https://www.thefreedictionary.com/favicon.ico",
-                        Link = "https://www.thefreedictionary.com/_/WoD/wod-module.xml",
+                        Link = "https://app.notifly.com.br/wod-module.xml",
                         Width = 300,
-                        Height = 136
+                        Height = 136,
+                        Preferences = new Dictionary<string, string>()
+                        {
+                            { "Format", "1"},
+                            { "Days", "1"}
+                        }
                     }
                 };
 
