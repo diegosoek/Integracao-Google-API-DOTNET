@@ -2,37 +2,9 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Dados do meu Classroom</h2>
+        <h2>Todas as turmas cadastradas no meu Classroom</h2>
         @if (ViewBag.courses != null)
         {
             IList<Google.Apis.Classroom.v1.Data.Course> courses = ViewBag.courses;
@@ -49,24 +21,64 @@
     @if (ViewBag.work != null)
     {
         <div class="col-md-4">
-            <h2>Trabalhos enviados com resposta</h2>
             @{
                 Google.Apis.Classroom.v1.Data.CourseWork work = ViewBag.work;
-                <div class="col-md-12">@work.Description - @work.Materials - @work.Title</div>
+                IList<Google.Apis.Classroom.v1.Data.StudentSubmission> submissions = ViewBag.submissions;
             }
-        </div>
+            <h2>Trabalho - @work.Title</h2>
+            @foreach (var submission in submissions)
+            {
+                <div class="col-md-12">@submission.AssignedGrade - @submission.DraftGrade - @submission.State</div>
+            }
+            @*
+                @{
+                    Outros campos do envio
+                    <div class="col-md-12">@work.Description - @work.Materials - @work.Title</div>
                 }
-    @if (ViewBag.work != null)
+            *@
+        </div>
+    }
+
+    @if (ViewBag.turmasAluno != null)
     {
         <div class="col-md-4">
-            <h2>Envios</h2>
             @{
-                IList<Google.Apis.Classroom.v1.Data.StudentSubmission> submissions = ViewBag.submissions;
-                foreach (var submission in submissions)
-                {
-                    <div class="col-md-12">@submission.AssignedGrade - @submission.DraftGrade - @submission.State</div>
-                }
+                IList<Google.Apis.Classroom.v1.Data.Course> courses = ViewBag.turmasAluno;
+            }
+            <h2>Turmas do aluno</h2>
+            @foreach (var turma in courses)
+            {
+                <div class="col-md-12">@turma.Name</div>
             }
         </div>
     }
+
+    @if (ViewBag.turmasProf != null)
+    {
+        <div class="col-md-4">
+            @{
+                IList<Google.Apis.Classroom.v1.Data.Course> courses = ViewBag.turmasProf;
+            }
+            <h2>Turmas do Professor</h2>
+            @foreach (var turma in courses)
+            {
+                <div class="col-md-12">@turma.Name</div>
+            }
+        </div>
+    }
+                @*
+
+                    @if (ViewBag.work != null)
+                    {
+                        <div class="col-md-4">
+                            <h2>Envios</h2>
+                            @{
+                                foreach (var submission in submissions)
+                                {
+                                    <div class="col-md-12">@submission.AssignedGrade - @submission.DraftGrade - @submission.State</div>
+                                }
+                            }
+                        </div>
+                                }
+                *@
 </div>

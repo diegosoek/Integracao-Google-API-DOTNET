@@ -62,6 +62,36 @@ namespace Integracao_Google_API_DOTNET.Controllers
 
                 ViewBag.courses = courses;
 
+
+                /*
+                Google.Apis.Classroom.v1.Data.UserProfile perfil = classroom.UserProfiles.Get("me").Execute();
+                if(perfil.)
+
+                */
+
+                CoursesResource.ListRequest request = classroom.Courses.List();
+                //Usuário logado como aluno
+                request.StudentId = "me";
+
+                courses = request.Execute().Courses;
+
+                if(courses != null && courses.Count > 0)
+                {
+                    ViewBag.turmasAluno = courses;
+                }
+
+                request = classroom.Courses.List();
+                //Usuário logado como aluno
+                request.TeacherId = "me";
+
+                courses = request.Execute().Courses;
+
+                if (courses != null && courses.Count > 0)
+                {
+                    ViewBag.turmasProf = courses;
+                }
+
+
             }
 
                 return View();
