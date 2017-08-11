@@ -12,12 +12,23 @@ namespace Integracao_Google_API_DOTNET.Controllers
         public ActionResult Index()
         {
 
+            GoogleService googleService = new GoogleService();
+
+            var drive = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = googleService.ServiceAccountCredential,
+                ApplicationName = GoogleApi.aplicationName,
+            });
+
+            var list = drive.Files.List();
+            var listex = list.Execute();
+
             string GoogleAccessCode = String.Empty;
             string GoogleRefreshToken = String.Empty;
 
             try
             {
-                GoogleAccessCode =  System.Web.HttpContext.Current.Session["GoogleAccessCode"].ToString();
+                GoogleAccessCode = System.Web.HttpContext.Current.Session["GoogleAccessCode"].ToString();
                 GoogleRefreshToken = System.Web.HttpContext.Current.Session["GoogleRefreshToken"].ToString();
             }
             catch (Exception e)
