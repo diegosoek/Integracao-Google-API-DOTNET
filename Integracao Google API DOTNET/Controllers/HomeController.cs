@@ -20,8 +20,7 @@ namespace Integracao_Google_API_DOTNET.Controllers
                 ApplicationName = GoogleApi.aplicationName,
             });
 
-            var list = drive.Files.List();
-            var listex = list.Execute();
+            var list = drive.Files.List().Execute();
 
             string GoogleAccessCode = String.Empty;
             string GoogleRefreshToken = String.Empty;
